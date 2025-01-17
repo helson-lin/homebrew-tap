@@ -1,14 +1,14 @@
 class Doke < Formula
   desc "A Docker container CLI tool built with Go"
   homepage "https://github.com/helson-lin/doke"
-  version "v0.0.3-beta"
+  version "v0.0.4-beta"
 
   if Hardware::CPU.arm?
-    url "https://github.com/helson-lin/doke/releases/download/v0.0.3-beta/doke-v0.0.3-beta-darwin-arm64.tar.gz"
-    sha256 "0fe09519db6db02a047daf83451b6c7f82d6c91f9048fe8cd32a72131838c20a" # 替换为实际的 arm64 SHA-256 值
+    url "https://github.com/helson-lin/doke/releases/download/v0.0.4-beta/doke-v0.0.4-beta-darwin-arm64.tar.gz"
+    sha256 "2703a59566d220113b417d44bc297df7f63af4ce12affd3d4905587736d4d5d9" # 替换为实际的 arm64 SHA-256 值
   elsif Hardware::CPU.intel?
-    url "https://github.com/helson-lin/doke/releases/download/v0.0.3-beta/doke-v0.0.3-beta-darwin-arm64.tar.gz"
-    sha256 "0fe09519db6db02a047daf83451b6c7f82d6c91f9048fe8cd32a72131838c20a" # 替换为实际的 x86_64 SHA-256 值
+    url "https://github.com/helson-lin/doke/releases/download/v0.0.4-beta/doke-v0.0.4-beta-darwin-arm64.tar.gz"
+    sha256 "2703a59566d220113b417d44bc297df7f63af4ce12affd3d4905587736d4d5d9" # 替换为实际的 x86_64 SHA-256 值
   end
 
   def install
