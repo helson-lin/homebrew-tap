@@ -8,7 +8,7 @@ class Doke < Formula
     sha256 "9b0c7c91d5aba919fbd62080eb5bdf71ce15cfa5794806dcc8abd8796e234b79" # 替换为实际的 arm64 SHA-256 值
   elsif Hardware::CPU.intel?
     url "https://github.com/helson-lin/doke/releases/download/v0.0.2/doke-v0.0.2-darwin-arm64.tar.gz"
-    sha256 "9b0c7c91d5aba919fbd62080eb5bdf71ce15cfa5794806dcc8abd8796e234b79" # 替换为实际的 x86_64 SHA-256 值
+    sha256 "df47cbb4be83300e83b3cd706a9d3d1f5ebbe6671cea5900d2d570b90d3fcba2" # 替换为实际的 x86_64 SHA-256 值
   end
 
   def install
