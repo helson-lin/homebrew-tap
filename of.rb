@@ -6,10 +6,10 @@ class Of < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/helson-lin/of/releases/download/v0.0.1/of-v0.0.1-darwin-arm64.tar.gz"
-      sha256 "9945f58ca389eb3bc643804a4feae2e4d4aa5ef7437607d5f1145a367d792024"
+      sha256 "ba5fd6eb337a482e81676424b580e643832a2dfc0e72dae826cd4a92a5fc5357"
     else
       url "https://github.com/helson-lin/of/releases/download/v0.0.1/of-v0.0.1-darwin-amd64.tar.gz"
-      sha256 "91bc991d54395ac6454788fba17187ea513bf9c5b966765799f4b6b8ac483bdb"
+      sha256 "fce46acb638da2283d627e4c9b6186ae49c1370f977bb626e654918fdbd802fe"
     end
   end
 
