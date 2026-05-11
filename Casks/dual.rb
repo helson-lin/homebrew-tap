@@ -1,9 +1,9 @@
 cask "dual" do
   arch arm: "apple-silicon", intel: "intel"
 
-  version "1.2.2-beta,17"
-  sha256 arm:   "f3a2aa2edc7bca1bbd94c9191d9bff59a6ee87557792b1da6400efcbe7a259d0",
-         intel: "bc660f4ab41430b69daf161b33f9f7e99302aedb2015ac7bf8a8b2c60b8939a0"
+  version "1.2.2,19"
+  sha256 arm:   "43c2ad68665ed78571f37b2ac3b7d0adbd746fb08585401c4a5b248a8cf5791e",
+         intel: "71a41c706f80d681cc566f06c5a77ab09298d39d7ccf676ab3c6c77f11ef5b87"
 
   url "https://github.com/helson-lin/Dual/releases/download/v#{version.csv.first}/Dual-#{version.csv.first}-#{version.csv.second}-macos-#{arch}.dmg",
       verified: "github.com/helson-lin/Dual/"
