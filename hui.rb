@@ -1,26 +1,43 @@
+# Homebrew formula for helson-lin/homebrew-tap (root: hui.rb only, like doke/of)
+# CI updates version / url / sha256 on each v*.*.* tag release.
 class Hui < Formula
   desc "Markdown to PNG/PDF/HTML converter with multi-theme support"
   homepage "https://github.com/helson-lin/hui"
-  version "v1.0.1"
+  version "1.0.2"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/helson-lin/hui/releases/download/v1.0.1/hui-v1.0.1-darwin-arm64.tar.gz"
-      sha256 "9d817fbecbe4651c5b400f0c8a43419d5f19f2cb2e9e2dff8cfcb51215dc02a9"
+      url "https://github.com/helson-lin/hui/releases/download/v1.0.2/hui-v1.0.2-darwin-arm64.tar.gz"
+      sha256 "8154bc9b02ce4c4f16a2eecccfbfd02c1f2e05e32d9e24def05180bb85e54baf"
     else
-      url "https://github.com/helson-lin/hui/releases/download/v1.0.1/hui-v1.0.1-darwin-amd64.tar.gz"
-      sha256 "41c4131c184638e7b429b52cf007b598f239e271fc3bf451e5825fb2bdb45a53"
+      url "https://github.com/helson-lin/hui/releases/download/v1.0.2/hui-v1.0.2-darwin-amd64.tar.gz"
+      sha256 "d122b08906ea1c6116a944735465d4acf8009f78ce2a6ebd2b952b3a53236060"
     end
   end
 
   def install
     bin.install "hui"
-    # pkg binaries built on Linux lack a valid macOS code signature.
+
+    # pkg/darwin binaries must carry a valid code signature on Apple Silicon.
     # Unsigned arm64 executables are SIGKILL'd by the kernel (zsh: killed).
+    # Always re-sign after install so brew download/quarantine cannot leave a
+    # broken or missing signature.
     return unless OS.mac?
 
-    system "xattr", "-cr", bin/"hui"
-    system "codesign", "--force", "--sign", "-", bin/"hui"
+    bin_path = bin/"hui"
+    system "/usr/bin/xattr", "-cr", bin_path
+    # Best-effort: drop any partial signature from the shipped binary
+    quiet_system "/usr/bin/codesign", "--remove-signature", bin_path
+
+    system "/usr/bin/codesign",
+           "--force",
+           "--sign", "-",
+           "--identifier", "com.helsonlin.hui",
+           "--timestamp=none",
+           bin_path
+    system "/usr/bin/codesign", "--verify", "--verbose", bin_path
+    # Fail install early if the kernel would still SIGKILL the binary.
+    system bin_path, "--version"
   end
 
   def caveats
@@ -31,13 +48,15 @@ class Hui < Formula
       Optional override:
         export HUI_CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
-      If you still see "zsh: killed", re-sign the binary:
-        codesign --force --sign - "$(brew --prefix)/bin/hui"
+      If you still see "zsh: killed", re-sign and clear quarantine:
         xattr -cr "$(brew --prefix)/bin/hui"
+        codesign --force --sign - --timestamp=none \\
+          --identifier com.helsonlin.hui "$(brew --prefix)/bin/hui"
+        hui --version
     EOS
   end
 
   test do
-    system "#{bin}/hui", "--version"
+    assert_match(/\d+\.\d+\.\d+/, shell_output("#{bin}/hui --version"))
   end
 end
