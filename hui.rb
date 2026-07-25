@@ -3,15 +3,15 @@
 class Hui < Formula
   desc "Markdown to PNG/PDF/HTML converter with multi-theme support"
   homepage "https://github.com/helson-lin/hui"
-  version "1.0.2"
+  version "1.0.3"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/helson-lin/hui/releases/download/v1.0.2/hui-v1.0.2-darwin-arm64.tar.gz"
-      sha256 "8154bc9b02ce4c4f16a2eecccfbfd02c1f2e05e32d9e24def05180bb85e54baf"
+      url "https://github.com/helson-lin/hui/releases/download/v1.0.3/hui-v1.0.3-darwin-arm64.tar.gz"
+      sha256 "8aaf3a29570f0bc54e98baac84e42d85898dbd4dc4c8eef6a0f65302c0b1505f"
     else
-      url "https://github.com/helson-lin/hui/releases/download/v1.0.2/hui-v1.0.2-darwin-amd64.tar.gz"
-      sha256 "d122b08906ea1c6116a944735465d4acf8009f78ce2a6ebd2b952b3a53236060"
+      url "https://github.com/helson-lin/hui/releases/download/v1.0.3/hui-v1.0.3-darwin-amd64.tar.gz"
+      sha256 "4d5abe2d6949e5c428a079705878857df00a8d6edd9538a99776238e3133c7f6"
     end
   end
 
