@@ -15,6 +15,7 @@ Install CLI formulas:
 ```bash
 brew install doke
 brew install of
+brew install hui
 ```
 
 Install the Dual macOS app:
@@ -28,6 +29,7 @@ Or install directly without tapping first:
 ```bash
 brew install helson-lin/tap/doke
 brew install helson-lin/tap/of
+brew install helson-lin/tap/hui
 brew install --cask helson-lin/tap/dual
 ```
 
