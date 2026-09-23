@@ -1,9 +1,9 @@
 cask "dual" do
   arch arm: "apple-silicon", intel: "intel"
 
-  version "1.2.2,19"
-  sha256 arm:   "43c2ad68665ed78571f37b2ac3b7d0adbd746fb08585401c4a5b248a8cf5791e",
-         intel: "71a41c706f80d681cc566f06c5a77ab09298d39d7ccf676ab3c6c77f11ef5b87"
+  version "1.2.3-beta.9,28"
+  sha256 arm:   "b8a9b3de483291c9377ca43693bf1553877666b4a33746f96244648d6e011310",
+         intel: "b4d1546708219ecdcee6f99c660271d74ed7f39e71e44b259f95fb5a56f59b3d"
 
   url "https://github.com/helson-lin/Dual/releases/download/v#{version.csv.first}/Dual-#{version.csv.first}-#{version.csv.second}-macos-#{arch}.dmg",
       verified: "github.com/helson-lin/Dual/"
@@ -15,15 +15,4 @@ cask "dual" do
 
   app "Dual.app"
 
-  caveats do
-    <<~EOS
-      Dual is currently distributed as an unsigned, unnotarized test build.
-
-      If macOS blocks the app after installation, remove the quarantine flag:
-        xattr -cr /Applications/Dual.app
-
-      If the app still cannot be opened, apply a local ad-hoc signature:
-        codesign --force --deep --sign - /Applications/Dual.app
-    EOS
-  end
 end
